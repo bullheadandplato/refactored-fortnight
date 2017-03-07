@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Cgpa Calculator</string>+
+    <array name="grades_names">
+        <item>A+</item>
+        <item>A</item>
+        <item>B+</item>
+        <item>B</item>
+        <item>B-</item>
+        <item>C+</item>
+        <item>C</item>
+        <item>D</item>
+        <item>F</item>
+    </array>
+    <array name="grades_number">
+        <item>4.00</item>
+        <item>3.70</item>
+        <item>3.40</item>
+        <item>3.00</item>
+        <item>2.50</item>
+        <item>2.00</item>
+        <item>1.50</item>
+        <item>1.00</item>
+        <item>0.00</item>
+    </array>
+</resources>
