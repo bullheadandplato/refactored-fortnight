@@ -23,7 +23,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.single_item,parent));
+        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.cardview_subjects,parent,false));
     }
 
     @Override
