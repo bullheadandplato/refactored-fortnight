@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    >
     <android.support.v7.widget.AppCompatSpinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/grade_names_spinner"
+        android:entries="@array/grade_names"
         >
     </android.support.v7.widget.AppCompatSpinner>
-    <android.support.v7.widget.AppCompatSpinner
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/grade_numbers_spinner"
-        >
-
-    </android.support.v7.widget.AppCompatSpinner>
+        android:id="@+id/grade_number_textview"
+        android:layout_alignParentRight="true"
+        />
 </RelativeLayout>
