@@ -60,36 +60,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
         if(position>=numberOfSubjects){
             return;
         }
-        Spinner spinner=holder.spinner;
-        TextView view=holder.textView;
-        Spinner spinner2=holder.spinner2;
-        setItemChangeListener(spinner,spinner2,view);
-        setOnCrChange(spinner2,spinner,view);
-    }
-    private void setItemChangeListener(Spinner spinner, final Spinner spinner2, final TextView textView){
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i==0){
-                    return;
-                }
-                final int crNumbers=getCrs(spinner2.getSelectedItemPosition());
-                float number=getGradeNumber(i);
-                Log.d(TAG, "onItemSelected: credit number is: "+crNumbers+" grade is: "+number);
 
-                number=number*crNumbers;
-                calculator.setTotalCrs(i-1,crNumbers);
-                calculator.addObtainedCrs(i-1,number);
-                Log.d(TAG, "onItemSelected: setting textview to: "+number);
-
-                textView.setText(""+number);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     private int getCrs(int selectedItemPosition) {
@@ -105,32 +76,6 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                 return 1;
             default: return 0;
         }
-    }
-
-    private void setOnCrChange(final Spinner spinner,final Spinner spinner2, final TextView textView){
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==0){
-                    return;
-                }
-                int crNumber=getCrs(i);
-                final float gradeNumber=getGradeNumber(spinner2.getSelectedItemPosition());
-
-                Log.d(TAG, "onItemSelected: credit number is: "+crNumber+" grade is: "+gradeNumber);
-
-                float number=gradeNumber*crNumber;
-                Log.d(TAG, "onItemSelected: setting textview to: "+number);
-                calculator.setTotalCrs(i-1,crNumber);
-                calculator.addObtainedCrs(i-1,number);
-                textView.setText(""+number);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     private float getGradeNumber(int selectedItemPosition) {
@@ -174,6 +119,59 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
             spinner=(Spinner)itemView.findViewById(R.id.grade_names_spinner);
             textView=(TextView)itemView.findViewById(R.id.grade_number_textview);
             spinner2=(Spinner)itemView.findViewById(R.id.cr_hours_spinner);
+
+            spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(i==0){
+                        return;
+                    }
+                    int crNumber=getCrs(i);
+                    final float gradeNumber=getGradeNumber(spinner2.getSelectedItemPosition());
+
+                    Log.d(TAG, "onItemSelected: credit number is: "+crNumber+" grade is: "+gradeNumber);
+
+                    float number=gradeNumber*crNumber;
+                    if(number>0){
+                        calculator.setTotalCrs(getAdapterPosition(),crNumber);
+                        calculator.addObtainedCrs(getAdapterPosition(),number);
+                        Log.d("man", "onItemSelected: adapter position is: "+getAdapterPosition());
+                        textView.setText(""+number);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (i==0){
+                        return;
+                    }
+                    final int crNumbers=getCrs(spinner2.getSelectedItemPosition());
+                    float number=getGradeNumber(i);
+                    Log.d(TAG, "onItemSelected: credit number is: "+crNumbers+" grade is: "+number);
+
+                    number=number*crNumbers;
+
+                    if(number>0){
+                        calculator.setTotalCrs(i-1,crNumbers);
+                        calculator.addObtainedCrs(i-1,number);
+                        Log.d("man", "onItemSelected: adapter position is: "+getAdapterPosition());
+                        textView.setText(""+number);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
         }
 
     }
