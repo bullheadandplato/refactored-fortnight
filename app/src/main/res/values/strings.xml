@@ -13,15 +13,11 @@
         <item>D</item>
         <item>F</item>
     </string-array>
-    <string-array name="grades_number">
-        <item>4.00</item>
-        <item>3.70</item>
-        <item>3.40</item>
-        <item>3.00</item>
-        <item>2.50</item>
-        <item>2.00</item>
-        <item>1.50</item>
-        <item>1.00</item>
-        <item>0.00</item>
+    <string-array name="cr_hours_array">
+        <item>Select crs</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
     </string-array>
 </resources>

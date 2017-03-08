@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter=new SubjectsAdapter(this,numberOfSubjects);
         mSubjectsList.setLayoutManager(new LinearLayoutManager(this));
         mSubjectsList.setAdapter(mAdapter);
+
     }
     public void addNewSubject(View view){
         mAdapter.setNumberofSubjects(++numberOfSubjects);
