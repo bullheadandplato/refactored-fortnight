@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Cgpa Calculator</string>
-    <string name="add_more_item">Add more item</string>+
+    <string name="add_more_item">Add more item</string>
+    <string name="cal_button_text">Calculate</string>+
     <string-array name="grade_names">
         <item>Select grade</item>
         <item>A+</item>

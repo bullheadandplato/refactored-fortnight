@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,5 +30,9 @@ public class MainActivity extends AppCompatActivity {
     public void addNewSubject(View view){
         mAdapter.setNumberofSubjects(++numberOfSubjects);
         mAdapter.notifyItemInserted(numberOfSubjects-1);
+    }
+    public void calculateButtonClick(View view){
+       float goo= BackendCalculator.getInstance().calculateCgpa();
+        ((TextView)findViewById(R.id.show_cgpa_textview)).setText("GPA: "+goo);
     }
 }

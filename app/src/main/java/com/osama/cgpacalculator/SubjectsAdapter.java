@@ -35,7 +35,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     public SubjectsAdapter(Context context,int numberOfSubjects){
         this.mContext=context;
         this.numberOfSubjects=numberOfSubjects;
-        calculator=new BackendCalculator();
+        calculator=BackendCalculator.getInstance();
     }
 
     @Override
@@ -78,6 +78,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                 Log.d(TAG, "onItemSelected: credit number is: "+crNumbers+" grade is: "+number);
 
                 number=number*crNumbers;
+                calculator.setTotalCrs(i-1,crNumbers);
                 calculator.addObtainedCrs(i-1,number);
                 Log.d(TAG, "onItemSelected: setting textview to: "+number);
 
@@ -120,6 +121,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
                 float number=gradeNumber*crNumber;
                 Log.d(TAG, "onItemSelected: setting textview to: "+number);
+                calculator.setTotalCrs(i-1,crNumber);
                 calculator.addObtainedCrs(i-1,number);
                 textView.setText(""+number);
             }
