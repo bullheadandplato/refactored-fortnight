@@ -3,7 +3,7 @@
     <string name="add_more_item">Add more item</string>
     <string name="cal_button_text">Calculate</string>+
     <string-array name="grade_names">
-        <item>Select grade</item>
+        <item>grade</item>
         <item>A+</item>
         <item>A</item>
         <item>B+</item>
@@ -15,7 +15,7 @@
         <item>F</item>
     </string-array>
     <string-array name="cr_hours_array">
-        <item>Select crs</item>
+        <item>crHrs</item>
         <item>4</item>
         <item>3</item>
         <item>2</item>

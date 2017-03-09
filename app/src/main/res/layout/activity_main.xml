@@ -35,7 +35,7 @@
             android:text="@string/cal_button_text"
             android:layout_below="@id/show_cgpa_textview"
             android:layout_centerHorizontal="true"
-            android:onClick="calculateButtonClick"
+            android:id="@+id/calculate_button"
             />
     </RelativeLayout>
 </ScrollView>

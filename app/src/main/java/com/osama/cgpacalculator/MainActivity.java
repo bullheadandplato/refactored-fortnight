@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupRecyclerView();
         animateWhat();
+        findViewById(R.id.calculate_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calculateButtonClick(view);
+            }
+        });
     }
 
     @Override
