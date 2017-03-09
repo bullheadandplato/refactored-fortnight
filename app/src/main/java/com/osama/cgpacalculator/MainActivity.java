@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupRecyclerView();
+        animateWhat();
     }
 
     @Override
@@ -58,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
     public void calculateButtonClick(View view){
        float goo= BackendCalculator.getInstance().calculateCgpa();
         ((TextView)findViewById(R.id.show_cgpa_textview)).setText("GPA: "+goo);
+    }
+    //trying to animate something
+    private void animateWhat(){
+        Animation animation=new ScaleAnimation(0f,1f,0f,1f);
+        animation.setDuration(800);
+        mSubjectsList.setAnimation(animation);
+        mSubjectsList.animate();
     }
 
 }
