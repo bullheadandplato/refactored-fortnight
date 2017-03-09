@@ -122,10 +122,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
             spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if(i==0){
-                        return;
-                    }
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
                     int crNumber=getCrs(i);
                     final float gradeNumber=getGradeNumber(spinner.getSelectedItemPosition());
 
@@ -133,10 +130,15 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
                     float number=gradeNumber*crNumber;
                     if(number>0){
+                        Log.d(TAG, "onItemSelected: Yes number is greater than zero");
                         calculator.setTotalCrs(getAdapterPosition(),crNumber);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
                         textView.setText(""+number);
+                    }else{
+                        Log.d(TAG, "onItemSelected: no number is zero");
+                        calculator.removeIfAdded(getAdapterPosition());
                     }
+                    textView.setText(""+number);
                 }
 
                 @Override
@@ -148,9 +150,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    if (i==0){
-                        return;
-                    }
+
                     final int crNumbers=getCrs(spinner2.getSelectedItemPosition());
                     float number=getGradeNumber(i);
                     Log.d(TAG, "onItemSelected: credit number is: "+crNumbers+" grade is: "+number);
@@ -160,8 +160,10 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     if(number>0){
                         calculator.setTotalCrs(getAdapterPosition(),crNumbers);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
-                        textView.setText(""+number);
+                    }else{
+                        calculator.removeIfAdded(getAdapterPosition());
                     }
+                    textView.setText(""+number);
                 }
 
                 @Override

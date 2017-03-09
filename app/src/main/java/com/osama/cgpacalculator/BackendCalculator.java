@@ -51,4 +51,12 @@ public class BackendCalculator {
         return instance;
     }
 
+    public void removeIfAdded(int adapterPosition) {
+        if(obtainedCrs.containsKey(adapterPosition)){
+            obtainedCrs.remove(adapterPosition);
+        }
+        if(creditHours.containsKey(adapterPosition)){
+            creditHours.remove(adapterPosition);
+        }
+    }
 }
