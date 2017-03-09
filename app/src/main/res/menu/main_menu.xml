@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item android:title="reset"
-    app:showAsAction="never"
+    app:showAsAction="ifRoom"
+    android:icon="@drawable/ic_reset"
     android:id="@+id/reset_menuitem"/>
+    <item android:title="About"
+        app:showAsAction="never"
+        android:id="@+id/about_menuitem"/>
 </menu>
