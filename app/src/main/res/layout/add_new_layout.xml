@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:text="@string/add_more_item"
             android:layout_gravity="center"
-            android:textSize="24sp"
             android:textColor="#000"
             />
     </LinearLayout>
