@@ -24,24 +24,44 @@ android:layout_margin="@dimen/activity_horizontal_margin"
         android:text="1.00"
         android:layout_gravity="center_horizontal"
         />
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="small application to calculate CGPA."
-        android:layout_gravity="center_horizontal"
-        />
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="copyright (c) Osama Bin Omar"
-        android:layout_gravity="center_horizontal"
-        />
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This program comes with no warranty."
-        android:layout_gravity="center_horizontal"
-        />
+ <android.support.v7.widget.AppCompatTextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="---------------------------------------------------------------------"
+     android:layout_gravity="center"
+     />
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/about_content_layout"
+    android:layout_gravity="center"
+    >
+
+</FrameLayout>
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     >
+  <android.support.v7.widget.AppCompatButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Credits"
+      android:background="@android:color/transparent"
+      android:textColor="@color/dialogButtonColor"
+      android:id="@+id/credit_dialog_button"
+      />
+  <android.support.v7.widget.AppCompatButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="License"
+      android:background="@android:color/transparent"
+      android:textColor="@color/dialogButtonColor"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:id="@+id/license_dialog_button"
+      />
+ </RelativeLayout>
 
 
 

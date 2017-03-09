@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,11 +58,54 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+private     boolean isShowingCr=false;
+    private boolean isShowingLi=false;
 
     private void showAboutDialog() {
+        final ScaleAnimation animation=new ScaleAnimation(0f,1f,0f,1f);
+        animation.setDuration(800);
         Dialog dialog=new Dialog(this);
         dialog.setContentView(R.layout.about_dialog);
+        final FrameLayout frame=((FrameLayout)dialog.findViewById(R.id.about_content_layout));
+        frame.addView(getLayoutInflater().inflate(R.layout.intro_section_layout,null));
+        dialog.findViewById(R.id.credit_dialog_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                frame.removeAllViews();
+                isShowingLi=false;
+                if(!isShowingCr){
+                    Log.d("clicked", "onClick: credit button clicked");
+                    frame.addView(getLayoutInflater().inflate(R.layout.credits_layout,null));
+                    isShowingCr=true;
+                    frame.setAnimation(animation);
+                }else{
+                    frame.addView(getLayoutInflater().inflate(R.layout.intro_section_layout,null));
+                    isShowingCr=false;
+                    frame.setAnimation(animation);
+                }
+                frame.animate();
+            }
+        });
+        dialog.findViewById(R.id.license_dialog_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                frame.removeAllViews();
+                isShowingCr=false;
+                if(!isShowingLi){
+                    Log.d("clicked", "onClick: credit button clicked");
+                    frame.addView(getLayoutInflater().inflate(R.layout.license_layout,null));
+                    isShowingLi=true;
+                    frame.setAnimation(animation);
+                }else{
+                    frame.addView(getLayoutInflater().inflate(R.layout.intro_section_layout,null));
+                    isShowingLi=false;
+                    frame.setAnimation(animation);
+                }
+                frame.animate();
+            }
+        });
         dialog.show();
+
     }
 
     private void setupRecyclerView() {
