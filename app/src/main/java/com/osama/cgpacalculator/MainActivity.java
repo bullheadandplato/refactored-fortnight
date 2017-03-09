@@ -1,5 +1,6 @@
 package com.osama.cgpacalculator;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,8 +50,17 @@ public class MainActivity extends AppCompatActivity {
                 recreate();
                 break;
             }
+            case R.id.about_menuitem:{
+                showAboutDialog();
+            }
         }
         return true;
+    }
+
+    private void showAboutDialog() {
+        Dialog dialog=new Dialog(this);
+        dialog.setContentView(R.layout.about_dialog);
+        dialog.show();
     }
 
     private void setupRecyclerView() {
