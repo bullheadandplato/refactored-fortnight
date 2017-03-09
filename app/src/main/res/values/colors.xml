@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#313131</color>
+    <color name="colorPrimaryDark">#212121</color>
+    <color name="dividerColor">#bdbdbd</color>
+    <color name="secondaryText">#FF5252</color>
+    <color name="textColorPrimary">#212121</color>
+    <color name="colorAccent">#4caf50</color>
+    <color name="textColorTertiary">#414141</color>
+    <color name="folderColor"> #616161</color>
+    <color name="dialogButtonColor">#2196f3</color>
+
+    <color name="pagercolor1">#37474F</color>
+    <color name="pagercolor2">#FF5252</color>
+    <color name="pagercolor3">#2196f3</color>
+    <color name="white">#FFF</color>
 </resources>
