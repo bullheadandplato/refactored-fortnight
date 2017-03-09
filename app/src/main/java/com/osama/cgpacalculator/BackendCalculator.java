@@ -3,10 +3,7 @@ package com.osama.cgpacalculator;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by home on 3/8/17.
@@ -18,11 +15,13 @@ public class BackendCalculator {
     private static BackendCalculator instance;
     private int totalCrs=0;
     private HashMap<Integer,Float> obtainedCrs=new HashMap<>();
+    private HashMap<Integer,Integer> creditHours=new HashMap<>();
     private BackendCalculator(){
 
     }
     public void setTotalCrs(int index,int totalCrs) {
-        this.totalCrs += totalCrs;
+
+        creditHours.put(index,totalCrs);
     }
     public void addObtainedCrs(int index,float number){
         this.obtainedCrs.put(index,number);
@@ -30,10 +29,19 @@ public class BackendCalculator {
     }
     public float calculateCgpa(){
         float sum=0f;
-        for (int i=0;i<obtainedCrs.size();i++){
-            sum+=obtainedCrs.get(i);
+        Object[] values=obtainedCrs.values().toArray();
+        for (Object value:values){
+            Log.d(TAG, "calculateCgpa: value is: "+value);
+            sum+=(float)value;
         }
+        values=creditHours.values().toArray();
+        for (Object val:values) {
+            totalCrs+=(int)val;
+        }
+        Log.d(TAG, "calculateCgpa: total credit hours: "+totalCrs);
+        Log.d(TAG, "calculateCgpa: Sum is: "+sum);
         sum=sum/totalCrs;
+        totalCrs=0;
         return sum;
     }
     public static BackendCalculator getInstance(){
@@ -42,4 +50,5 @@ public class BackendCalculator {
         }
         return instance;
     }
+
 }

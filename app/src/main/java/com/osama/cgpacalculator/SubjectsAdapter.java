@@ -127,7 +127,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                         return;
                     }
                     int crNumber=getCrs(i);
-                    final float gradeNumber=getGradeNumber(spinner2.getSelectedItemPosition());
+                    final float gradeNumber=getGradeNumber(spinner.getSelectedItemPosition());
 
                     Log.d(TAG, "onItemSelected: credit number is: "+crNumber+" grade is: "+gradeNumber);
 
@@ -135,7 +135,6 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     if(number>0){
                         calculator.setTotalCrs(getAdapterPosition(),crNumber);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
-                        Log.d("man", "onItemSelected: adapter position is: "+getAdapterPosition());
                         textView.setText(""+number);
                     }
                 }
@@ -159,9 +158,8 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     number=number*crNumbers;
 
                     if(number>0){
-                        calculator.setTotalCrs(i-1,crNumbers);
-                        calculator.addObtainedCrs(i-1,number);
-                        Log.d("man", "onItemSelected: adapter position is: "+getAdapterPosition());
+                        calculator.setTotalCrs(getAdapterPosition(),crNumbers);
+                        calculator.addObtainedCrs(getAdapterPosition(),number);
                         textView.setText(""+number);
                     }
                 }
