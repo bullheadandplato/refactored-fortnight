@@ -1,6 +1,7 @@
 package com.osama.cgpacalculator;
 
 import android.content.Context;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     private int numberOfSubjects;
     private BackendCalculator calculator;
     private static final int VIEW_TWO=132;
+    private static final int VIEW_THREE=324;
     private static final String TAG=SubjectsAdapter.class.getCanonicalName();
     private static final int A_PLUS=1;
     private static final int A=2;
@@ -42,24 +44,26 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType==VIEW_TWO){
             return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.add_new_layout,parent,false),VIEW_TWO);
+        }else if(viewType==VIEW_THREE){
+            return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.previous_cgpa_layout,parent,false),VIEW_THREE);
         }
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.cardview_subjects,parent,false),0);
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(position>=numberOfSubjects){
+        if(position==numberOfSubjects){
             Log.d(TAG, "getItemViewType: returning new view");
             return VIEW_TWO;
+        }else if(position>numberOfSubjects){
+            Log.d(TAG, "getItemViewType: Returning previous cgpa view");
+            return VIEW_THREE;
         }
         return super.getItemViewType(position);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(position>=numberOfSubjects){
-            return;
-        }
 
     }
 
@@ -104,16 +108,22 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return numberOfSubjects+1;
+        return numberOfSubjects+2;
 
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         Spinner spinner;
         TextView textView;
         Spinner spinner2;
+        TextInputEditText previousCgpaEdit;
+        TextInputEditText previousCrHrsEdit;
         public ViewHolder(final View itemView,int pos) {
             super(itemView);
             if(pos==VIEW_TWO){
+                return;
+            }else if(pos==VIEW_THREE){
+                previousCgpaEdit=(TextInputEditText)itemView.findViewById(R.id.previous_cgpa);
+                previousCrHrsEdit=(TextInputEditText)itemView.findViewById(R.id.previous_credit_hours);
                 return;
             }
             spinner=(Spinner)itemView.findViewById(R.id.grade_names_spinner);

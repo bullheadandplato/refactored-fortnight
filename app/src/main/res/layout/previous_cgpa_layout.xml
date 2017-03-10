@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/list_card_view_margin"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/list_card_view_margin"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,12 +24,7 @@
             android:orientation="horizontal"
             android:id="@+id/dummy_linear"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CGPA"
-                android:layout_gravity="center_vertical"
-                />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +34,7 @@
                 >
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/previous_cgpa"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:hint="previous cpga"
@@ -53,12 +48,7 @@
             android:layout_below="@id/dummy_linear"
             android:orientation="horizontal"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CrHrs"
-                android:layout_gravity="center_vertical"
-                />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,7 +58,7 @@
                 >
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/previous_credit_hours"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="total credit hours"
