@@ -127,7 +127,10 @@ private     boolean isShowingCr=false;
     }
     public void calculateButtonClick(View view){
        float goo= BackendCalculator.getInstance().calculateCgpa(mAdapter.getPreviousCrHrs(),mAdapter.getPreviousCgpa());
-        ((TextView)findViewById(R.id.show_cgpa_textview)).setText("GPA: "+goo);
+        TextView textView=((TextView)findViewById(R.id.show_cgpa_textview));
+        textView.setText("GPA: "+goo);
+        gpaAnimation(textView);
+
     }
     //trying to animate something
     private void animateWhat(){
@@ -135,6 +138,12 @@ private     boolean isShowingCr=false;
         animation.setDuration(800);
         mSubjectsList.setAnimation(animation);
         mSubjectsList.animate();
+    }
+    private void gpaAnimation(View view){
+        ScaleAnimation animation=new ScaleAnimation(0f,1f,1f,1f);
+        animation.setDuration(500);
+        view.setAnimation(animation);
+        view.animate();
     }
 
 }
