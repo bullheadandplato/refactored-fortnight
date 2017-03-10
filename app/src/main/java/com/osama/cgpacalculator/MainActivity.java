@@ -1,12 +1,12 @@
 package com.osama.cgpacalculator;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,16 +17,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mSubjectsList;
+    private RecyclerView    mSubjectsList;
     private SubjectsAdapter mAdapter;
-    private int numberOfSubjects=5;
+    private int             numberOfSubjects    = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setupRecyclerView();
         animateWhat();
+
         findViewById(R.id.calculate_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,23 +66,27 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-private     boolean isShowingCr=false;
-    private boolean isShowingLi=false;
 
+    private boolean isShowingCr = false;
+    private boolean isShowingLi = false;
+
+    @SuppressLint("InflateParams")
     private void showAboutDialog() {
         final ScaleAnimation animation=new ScaleAnimation(0f,1f,0f,1f);
         animation.setDuration(800);
+
         Dialog dialog=new Dialog(this);
         dialog.setContentView(R.layout.about_dialog);
-        final FrameLayout frame=((FrameLayout)dialog.findViewById(R.id.about_content_layout));
+
+        final FrameLayout frame = ((FrameLayout)dialog.findViewById(R.id.about_content_layout));
         frame.addView(getLayoutInflater().inflate(R.layout.intro_section_layout,null));
+
         dialog.findViewById(R.id.credit_dialog_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 frame.removeAllViews();
                 isShowingLi=false;
                 if(!isShowingCr){
-                    Log.d("clicked", "onClick: credit button clicked");
                     frame.addView(getLayoutInflater().inflate(R.layout.credits_layout,null));
                     isShowingCr=true;
                     frame.setAnimation(animation);
@@ -92,13 +98,13 @@ private     boolean isShowingCr=false;
                 frame.animate();
             }
         });
+
         dialog.findViewById(R.id.license_dialog_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 frame.removeAllViews();
                 isShowingCr=false;
                 if(!isShowingLi){
-                    Log.d("clicked", "onClick: credit button clicked");
                     frame.addView(getLayoutInflater().inflate(R.layout.license_layout,null));
                     isShowingLi=true;
                     frame.setAnimation(animation);
@@ -110,13 +116,14 @@ private     boolean isShowingCr=false;
                 frame.animate();
             }
         });
-        dialog.show();
 
+        dialog.show();
     }
 
     private void setupRecyclerView() {
-        mSubjectsList=(RecyclerView)findViewById(R.id.subjects_list);
-        mAdapter=new SubjectsAdapter(this,numberOfSubjects);
+        mSubjectsList   = (RecyclerView)findViewById(R.id.subjects_list);
+        mAdapter        = new SubjectsAdapter(this,numberOfSubjects);
+
         mSubjectsList.setLayoutManager(new LinearLayoutManager(this));
         mSubjectsList.setAdapter(mAdapter);
 
@@ -125,22 +132,29 @@ private     boolean isShowingCr=false;
         mAdapter.setNumberofSubjects(++numberOfSubjects);
         mAdapter.notifyItemInserted(numberOfSubjects-1);
     }
+
+    @SuppressLint("SetTextI18n")
     public void calculateButtonClick(View view){
-       float goo= BackendCalculator.getInstance().calculateCgpa(mAdapter.getPreviousCrHrs(),mAdapter.getPreviousCgpa());
-        TextView textView=((TextView)findViewById(R.id.show_cgpa_textview));
+        float goo =
+                BackendCalculator.getInstance().calculateCgpa(
+                        mAdapter.getPreviousCrHrs(),
+                        mAdapter.getPreviousCgpa()
+                );
+
+        TextView textView   = ((TextView)findViewById(R.id.show_cgpa_textview));
         textView.setText("GPA: "+goo);
         gpaAnimation(textView);
 
     }
     //trying to animate something
     private void animateWhat(){
-        Animation animation=new ScaleAnimation(0f,1f,0f,1f);
+        Animation animation = new ScaleAnimation(0f,1f,0f,1f);
         animation.setDuration(800);
         mSubjectsList.setAnimation(animation);
         mSubjectsList.animate();
     }
     private void gpaAnimation(View view){
-        ScaleAnimation animation=new ScaleAnimation(0f,1f,1f,1f);
+        ScaleAnimation animation = new ScaleAnimation(0f,1f,1f,1f);
         animation.setDuration(500);
         view.setAnimation(animation);
         view.animate();

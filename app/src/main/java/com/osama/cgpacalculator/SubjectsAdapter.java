@@ -1,5 +1,6 @@
 package com.osama.cgpacalculator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
@@ -18,46 +19,54 @@ import android.widget.TextView;
 
 public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHolder> {
 
-    private Context mContext;
-    private int numberOfSubjects;
-    private BackendCalculator calculator;
-    private static final int VIEW_TWO=132;
-    private static final int VIEW_THREE=324;
-    private ViewHolder thridViewHolder;
-    private static final String TAG=SubjectsAdapter.class.getCanonicalName();
-    private static final int A_PLUS=1;
-    private static final int A=2;
-    private static final int B_PLUS=3;
-    private static final int B=4;
-    private static final int B_MINUS=5;
-    private static final int C_PLUS=6;
-    private static final int C=7;
-    private static final int D=8;
-    private static final int F=9;
+    private Context             mContext;
+    private int                 numberOfSubjects;
+    private BackendCalculator   calculator;
+    private ViewHolder          thirdViewHolder;
+
+    private static final String TAG         = SubjectsAdapter.class.getCanonicalName();
+    private static final int    VIEW_TWO    = 132;
+    private static final int    VIEW_THREE  = 324;
+    private static final int    A_PLUS      = 1;
+    private static final int    A           = 2;
+    private static final int    B_PLUS      = 3;
+    private static final int    B           = 4;
+    private static final int    B_MINUS     = 5;
+    private static final int    C_PLUS      = 6;
+    private static final int    C           = 7;
+    private static final int    D           = 8;
 
     public SubjectsAdapter(Context context,int numberOfSubjects){
-        this.mContext=context;
-        this.numberOfSubjects=numberOfSubjects;
-        calculator=BackendCalculator.getInstance();
+        Log.i(TAG, "SubjectsAdapter: created new instance of Adapter");
+        this.mContext           = context;
+        this.numberOfSubjects   = numberOfSubjects;
+        calculator              = BackendCalculator.getInstance();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType==VIEW_TWO){
-            return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.add_new_layout,parent,false),VIEW_TWO);
+            return new ViewHolder(
+                    LayoutInflater.from(mContext).inflate(R.layout.add_new_layout,parent,false),
+                    VIEW_TWO
+            );
         }else if(viewType==VIEW_THREE){
-            return thridViewHolder= new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.previous_cgpa_layout,parent,false),VIEW_THREE);
+            return thirdViewHolder  = new ViewHolder(
+                    LayoutInflater.from(mContext).inflate(R.layout.previous_cgpa_layout,parent,false),
+                    VIEW_THREE
+            );
         }
-        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.cardview_subjects,parent,false),0);
+        return new ViewHolder(
+                LayoutInflater.from(mContext).inflate(R.layout.cardview_subjects,parent,false),
+                0
+        );
     }
 
     @Override
     public int getItemViewType(int position) {
         if(position==numberOfSubjects){
-            Log.d(TAG, "getItemViewType: returning new view");
             return VIEW_TWO;
         }else if(position>numberOfSubjects){
-            Log.d(TAG, "getItemViewType: Returning previous cgpa view");
             return VIEW_THREE;
         }
         return super.getItemViewType(position);
@@ -67,112 +76,47 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
 
     }
-    public float getPreviousCgpa(){
-        String cgpa=thridViewHolder.previousCgpaEdit.getText().toString();
-        if (cgpa.length()<1){
-            return 0;
-        }
-        try {
-            return Float.valueOf(cgpa);
-        }catch (NumberFormatException ex){
-            thridViewHolder.previousCgpaEdit.setError("Please input correct cgpa");
-            return 0f;
-        }
-    }
-    public int getPreviousCrHrs(){
-        String crs=thridViewHolder.previousCrHrsEdit.getText().toString();
-        if (crs.length()<1){
-            return 0;
-        }
-        try{
-            return Integer.valueOf(crs);
-        }catch (NumberFormatException ex){
-            ex.printStackTrace();
-            thridViewHolder.previousCrHrsEdit.setError("Please input correct number of credit hours");
-            return 0;
-        }
-    }
-
-    private int getCrs(int selectedItemPosition) {
-        Log.d("test", "getCrs: selected item pos is: "+selectedItemPosition);
-        switch (selectedItemPosition){
-            case 1:
-                return 4;
-            case 2:
-                return 3;
-            case 3:
-                return 2;
-            case 4:
-                return 1;
-            default: return 0;
-        }
-    }
-
-    private float getGradeNumber(int selectedItemPosition) {
-        Log.d("test", "getGradeNumber: selected item pos is: "+selectedItemPosition);
-        switch (selectedItemPosition){
-            case A_PLUS:
-                return 4.00f;
-            case A:
-                return 3.70f;
-            case B_PLUS:
-                return 3.40f;
-            case B:
-                return 3.00f;
-            case B_MINUS:
-                return 2.50f;
-            case C_PLUS:
-                return 2.00f;
-            case C:
-                return 1.50f;
-            case D:
-                return 1.00f;
-            default:
-                return 0.00f;
-        }
-    }
 
     @Override
     public int getItemCount() {
         return numberOfSubjects+2;
-
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
-        Spinner spinner;
-        TextView textView;
-        Spinner spinner2;
-        TextInputEditText previousCgpaEdit;
-        TextInputEditText previousCrHrsEdit;
+        Spinner             spinner;
+        TextView            textView;
+        Spinner             spinner2;
+        TextInputEditText   previousCgpaEdit;
+        TextInputEditText   previousCrHrsEdit;
+
         public ViewHolder(final View itemView,int pos) {
             super(itemView);
             if(pos==VIEW_TWO){
                 return;
             }else if(pos==VIEW_THREE){
-                previousCgpaEdit=(TextInputEditText)itemView.findViewById(R.id.previous_cgpa);
-                previousCrHrsEdit=(TextInputEditText)itemView.findViewById(R.id.previous_credit_hours);
+                previousCgpaEdit    = (TextInputEditText)itemView.findViewById(R.id.previous_cgpa);
+                previousCrHrsEdit   = (TextInputEditText)itemView.findViewById(R.id.previous_credit_hours);
                 return;
             }
-            spinner=(Spinner)itemView.findViewById(R.id.grade_names_spinner);
-            textView=(TextView)itemView.findViewById(R.id.grade_number_textview);
-            spinner2=(Spinner)itemView.findViewById(R.id.cr_hours_spinner);
+
+            spinner     = (Spinner)itemView.findViewById(R.id.grade_names_spinner);
+            textView    = (TextView)itemView.findViewById(R.id.grade_number_textview);
+            spinner2    = (Spinner)itemView.findViewById(R.id.cr_hours_spinner);
 
             spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
-                    int crNumber=getCrs(i);
-                    final float gradeNumber=getGradeNumber(spinner.getSelectedItemPosition());
+                    int         crNumber    = getCrs(i);
+                    final float gradeNumber = getGradeNumber(spinner.getSelectedItemPosition());
+                    float       number      = gradeNumber*crNumber;
 
-                    Log.d(TAG, "onItemSelected: credit number is: "+crNumber+" grade is: "+gradeNumber);
-
-                    float number=gradeNumber*crNumber;
                     if(number>0){
-                        Log.d(TAG, "onItemSelected: Yes number is greater than zero");
                         calculator.setTotalCrs(getAdapterPosition(),crNumber);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
                         textView.setText(""+number);
                     }else{
-                        Log.d(TAG, "onItemSelected: no number is zero");
                         calculator.removeIfAdded(getAdapterPosition());
                     }
                     textView.setText(""+number);
@@ -188,11 +132,10 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    final int crNumbers=getCrs(spinner2.getSelectedItemPosition());
-                    float number=getGradeNumber(i);
-                    Log.d(TAG, "onItemSelected: credit number is: "+crNumbers+" grade is: "+number);
+                    final int crNumbers = getCrs(spinner2.getSelectedItemPosition());
+                    float     number    = getGradeNumber(i);
 
-                    number=number*crNumbers;
+                    number  = number*crNumbers;
 
                     if(number>0){
                         calculator.setTotalCrs(getAdapterPosition(),crNumbers);
@@ -213,7 +156,58 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
     }
 
-    public void setNumberofSubjects(int number){
-        this.numberOfSubjects=number;
+    public float getPreviousCgpa(){
+        String cgpa = thirdViewHolder.previousCgpaEdit.getText().toString();
+        if (cgpa.length()<1){
+            return 0;
+        }
+        try {
+            return Float.valueOf(cgpa);
+        }catch (NumberFormatException ex){
+            thirdViewHolder.previousCgpaEdit.setError("Please input correct cgpa");
+            return 0f;
+        }
     }
+
+    public int getPreviousCrHrs(){
+        String crs=thirdViewHolder.previousCrHrsEdit.getText().toString();
+        if (crs.length()<1){
+            return 0;
+        }
+        try{
+            return Integer.valueOf(crs);
+        }catch (NumberFormatException ex){
+            ex.printStackTrace();
+            thirdViewHolder.previousCrHrsEdit.setError("Please input correct number of credit hours");
+            return 0;
+        }
+    }
+    public void setNumberofSubjects(int number){
+        this.numberOfSubjects   = number;
+    }
+
+    private int getCrs(int selectedItemPosition) {
+        switch (selectedItemPosition){
+            case 1:  return 4;
+            case 2:  return 3;
+            case 3:  return 2;
+            case 4:  return 1;
+            default: return 0;
+        }
+    }
+
+    private float getGradeNumber(int selectedItemPosition) {
+        switch (selectedItemPosition){
+            case A_PLUS:    return 4.00f;
+            case A:         return 3.70f;
+            case B_PLUS:    return 3.40f;
+            case B:         return 3.00f;
+            case B_MINUS:   return 2.50f;
+            case C_PLUS:    return 2.00f;
+            case C:         return 1.50f;
+            case D:         return 1.00f;
+            default:        return 0.00f;
+        }
+    }
+
 }

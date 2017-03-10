@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Previous semester record"
+            android:text="Previous semesters record"
             android:id="@+id/dummy_textview"
             />
         <LinearLayout
@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:hint="previous cpga"
+                    android:hint="previous cgpa"
                     android:maxLength="5"
                     />
             </android.support.design.widget.TextInputLayout>
