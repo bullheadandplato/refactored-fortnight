@@ -71,7 +71,7 @@
                 <TextView
                     android:id="@+id/textView21"
                     android:padding="@dimen/table_row_padding"
-                    android:text="84.50-100"
+                    android:text="84.50 - 100"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size" />
 
@@ -115,7 +115,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="79.50-84.49"
+                    android:text="79.50 - 84.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size" />
 
@@ -155,7 +155,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="74.50-79.49"
+                    android:text="74.50 - 79.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size" />
 
@@ -195,7 +195,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="69.50-74.49"
+                    android:text="69.50 - 74.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size"
                     />
@@ -236,7 +236,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="64.50-69.49"
+                    android:text="64.50 - 69.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size"
 
@@ -279,7 +279,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="59.50-64.49"
+                    android:text="59.50 - 64.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size"
 
@@ -322,7 +322,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="54.50-59.49"
+                    android:text="54.50 - 59.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size"
 
@@ -367,7 +367,7 @@
 
                 <TextView
                     android:padding="@dimen/table_row_padding"
-                    android:text="49.50-54.49"
+                    android:text="49.50 - 54.49"
                     android:textColor="@color/white"
                     android:textSize="@dimen/table_text_size"
 
@@ -448,7 +448,14 @@
             </TableRow>
 
         </TableLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grade_note"
+        android:textColor="@color/pagercolor2"
+        android:layout_below="@id/table"
+        android:textStyle="normal|italic"
+        android:textSize="14sp" />
     </RelativeLayout>
 
 </ScrollView>

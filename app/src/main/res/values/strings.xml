@@ -38,4 +38,6 @@
       along with CGPA Calculator.  If not, see http://www.gnu.org/licenses.
 
     </string>
+    <string name="grade_note">These grades are according to my university grading scheme.
+        Your grade scheme may vary.</string>
 </resources>
