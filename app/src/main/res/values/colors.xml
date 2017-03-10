@@ -15,6 +15,6 @@
     <color name="pagercolor3">#2196f3</color>
     <color name="white">#FFF</color>
 
-    <color name="tableRowColorLight">#4CAF50</color>
-    <color name="tableRowColorDark">#388e3c</color>
+    <color name="tableRowColorLight">#66bb6a</color>
+    <color name="tableRowColorDark">#4caf50</color>
 </resources>

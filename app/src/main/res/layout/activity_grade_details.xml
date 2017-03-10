@@ -9,7 +9,9 @@
         android:id="@+id/activity_grade_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="com.osama.cgpacalculator.GradeDetailsActivity">
+        tools:context="com.osama.cgpacalculator.GradeDetailsActivity"
+        android:padding="@dimen/list_card_view_margin"
+        >
 
         <TableLayout
             android:id="@+id/table"
