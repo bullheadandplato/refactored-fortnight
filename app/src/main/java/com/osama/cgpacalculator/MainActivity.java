@@ -126,7 +126,7 @@ private     boolean isShowingCr=false;
         mAdapter.notifyItemInserted(numberOfSubjects-1);
     }
     public void calculateButtonClick(View view){
-       float goo= BackendCalculator.getInstance().calculateCgpa();
+       float goo= BackendCalculator.getInstance().calculateCgpa(mAdapter.getPreviousCrHrs(),mAdapter.getPreviousCgpa());
         ((TextView)findViewById(R.id.show_cgpa_textview)).setText("GPA: "+goo);
     }
     //trying to animate something

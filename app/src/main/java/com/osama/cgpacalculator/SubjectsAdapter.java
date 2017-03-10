@@ -23,6 +23,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     private BackendCalculator calculator;
     private static final int VIEW_TWO=132;
     private static final int VIEW_THREE=324;
+    private ViewHolder thridViewHolder;
     private static final String TAG=SubjectsAdapter.class.getCanonicalName();
     private static final int A_PLUS=1;
     private static final int A=2;
@@ -45,7 +46,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
         if(viewType==VIEW_TWO){
             return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.add_new_layout,parent,false),VIEW_TWO);
         }else if(viewType==VIEW_THREE){
-            return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.previous_cgpa_layout,parent,false),VIEW_THREE);
+            return thridViewHolder= new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.previous_cgpa_layout,parent,false),VIEW_THREE);
         }
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.cardview_subjects,parent,false),0);
     }
@@ -65,6 +66,31 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+    }
+    public float getPreviousCgpa(){
+        String cgpa=thridViewHolder.previousCgpaEdit.getText().toString();
+        if (cgpa.length()<1){
+            return 0;
+        }
+        try {
+            return Float.valueOf(cgpa);
+        }catch (NumberFormatException ex){
+            thridViewHolder.previousCgpaEdit.setError("Please input correct cgpa");
+            return 0f;
+        }
+    }
+    public int getPreviousCrHrs(){
+        String crs=thridViewHolder.previousCrHrsEdit.getText().toString();
+        if (crs.length()<1){
+            return 0;
+        }
+        try{
+            return Integer.valueOf(crs);
+        }catch (NumberFormatException ex){
+            ex.printStackTrace();
+            thridViewHolder.previousCrHrsEdit.setError("Please input correct number of credit hours");
+            return 0;
+        }
     }
 
     private int getCrs(int selectedItemPosition) {
@@ -111,6 +137,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
         return numberOfSubjects+2;
 
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         Spinner spinner;
         TextView textView;

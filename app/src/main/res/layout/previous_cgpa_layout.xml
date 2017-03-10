@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:hint="previous cpga"
+                    android:maxLength="5"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -62,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="total credit hours"
+                    android:maxLength="3"
                     />
             </android.support.design.widget.TextInputLayout>
 
