@@ -1,6 +1,7 @@
 package com.osama.cgpacalculator;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
             }
             case R.id.about_menuitem:{
                 showAboutDialog();
+                break;
+            }
+            case R.id.grade_detail_menuitem:{
+                startActivity(new Intent(this,GradeDetailsActivity.class));
+                break;
             }
         }
         return true;

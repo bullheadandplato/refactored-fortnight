@@ -5,6 +5,9 @@
     app:showAsAction="ifRoom"
     android:icon="@drawable/ic_reset"
     android:id="@+id/reset_menuitem"/>
+    <item android:title="Grade details"
+        app:showAsAction="never"
+        android:id="@+id/grade_detail_menuitem"/>
     <item android:title="About"
         app:showAsAction="never"
         android:id="@+id/about_menuitem"/>
