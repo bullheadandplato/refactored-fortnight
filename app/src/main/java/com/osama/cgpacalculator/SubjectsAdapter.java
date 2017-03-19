@@ -112,7 +112,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     final float gradeNumber = getGradeNumber(spinner.getSelectedItemPosition());
                     float       number      = gradeNumber*crNumber;
 
-                    if(number>0){
+                    if(number>0 || (gradeNumber>0 && i>0)){
                         calculator.setTotalCrs(getAdapterPosition(),crNumber);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
                         textView.setText(""+number);
@@ -137,7 +137,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
                     number  = number*crNumbers;
 
-                    if(number>0){
+                    if(number>0 || (crNumbers>0 && i>0)){
                         calculator.setTotalCrs(getAdapterPosition(),crNumbers);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
                     }else{
