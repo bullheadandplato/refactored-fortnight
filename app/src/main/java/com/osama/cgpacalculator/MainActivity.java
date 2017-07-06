@@ -3,6 +3,8 @@ package com.osama.cgpacalculator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -128,9 +130,37 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
         mSubjectsList.setAdapter(mAdapter);
 
     }
+    private static final int MAX=6;
     public void addNewSubject(View view){
+        if (numberOfSubjects > MAX) {
+            Snackbar.make(view,"Do you really want to add another subject?",Snackbar.LENGTH_LONG)
+                    .setAction("Yes", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            addSubject();
+                        }
+                    }).show();
+        }else {
+            addSubject();
+        }
+
+    }
+    private void addSubject(){
         mAdapter.setNumberofSubjects(++numberOfSubjects);
         mAdapter.notifyItemInserted(numberOfSubjects-1);
+    }
+    private int getCgpaColor(float cgpa){
+        if (cgpa>=3){
+            return ContextCompat.getColor(this,R.color.colorGradeAPlus);
+        }else if (cgpa>=2.5){
+            return ContextCompat.getColor(this,R.color.colorGradeBPlus);
+        }else if (cgpa>=2){
+            return ContextCompat.getColor(this,R.color.colorGradeCPlus);
+        }else if (cgpa>=1.5){
+            return ContextCompat.getColor(this,R.color.colorGradeD);
+        }else {
+            return ContextCompat.getColor(this,R.color.colorGradeF);
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -144,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
         TextView textView   = ((TextView)findViewById(R.id.show_cgpa_textview));
         textView.setText("GPA: "+goo);
         gpaAnimation(textView);
+        textView.setTextColor(getCgpaColor(goo));
 
     }
     //trying to animate something

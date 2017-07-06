@@ -120,7 +120,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     final float gradeNumber = getGradeNumber(spinner.getSelectedItemPosition());
                     float       number      = gradeNumber*crNumber;
                     mCallbacks.moveToPos(getAdapterPosition());
-                    if(number>0 || (gradeNumber>0 && i>0)){
+                    if((i>0)){
                         calculator.setTotalCrs(getAdapterPosition(),crNumber);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
                         textView.setText(""+number);
@@ -150,7 +150,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                         itemView.setBackgroundColor(Color.WHITE);
                     }
 
-                    if(number>0 || (crNumbers>0 && i>0)){
+                    if((crNumbers>0 && i>0)){
                         calculator.setTotalCrs(getAdapterPosition(),crNumbers);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
                     }else{
