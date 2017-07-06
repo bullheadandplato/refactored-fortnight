@@ -23,6 +23,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
     private int                 numberOfSubjects;
     private BackendCalculator   calculator;
     private ViewHolder          thirdViewHolder;
+    private SubjectsAdapterCallbacks    mCallbacks;
 
     private static final String TAG         = SubjectsAdapter.class.getCanonicalName();
     private static final int    VIEW_TWO    = 132;
@@ -41,6 +42,11 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
         this.mContext           = context;
         this.numberOfSubjects   = numberOfSubjects;
         calculator              = BackendCalculator.getInstance();
+        try{
+            mCallbacks= (SubjectsAdapterCallbacks) mContext;
+        }catch (ClassCastException ex){
+            throw new IllegalArgumentException("Must implement "+SubjectsAdapterCallbacks.class.getName());
+        }
     }
 
     @Override
@@ -111,7 +117,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     int         crNumber    = getCrs(i);
                     final float gradeNumber = getGradeNumber(spinner.getSelectedItemPosition());
                     float       number      = gradeNumber*crNumber;
-
+                    mCallbacks.moveToPos(getAdapterPosition());
                     if(number>0 || (gradeNumber>0 && i>0)){
                         calculator.setTotalCrs(getAdapterPosition(),crNumber);
                         calculator.addObtainedCrs(getAdapterPosition(),number);
@@ -134,7 +140,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
 
                     final int crNumbers = getCrs(spinner2.getSelectedItemPosition());
                     float     number    = getGradeNumber(i);
-
+                    mCallbacks.moveToPos(getAdapterPosition());
                     number  = number*crNumbers;
 
                     if(number>0 || (crNumbers>0 && i>0)){
@@ -208,6 +214,22 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
             case D:         return 1.00f;
             default:        return 0.00f;
         }
+    }
+    private int getGradeColor(float gradeNumber){
+        switch (gradeNumber){
+            case A_PLUS:    return 4.00f;
+            case A:         return 3.70f;
+            case B_PLUS:    return 3.40f;
+            case B:         return 3.00f;
+            case B_MINUS:   return 2.50f;
+            case C_PLUS:    return 2.00f;
+            case C:         return 1.50f;
+            case D:         return 1.00f;
+            default:        return 0.00f;
+        }
+    }
+    public interface SubjectsAdapterCallbacks{
+        void moveToPos(int pos);
     }
 
 }

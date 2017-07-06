@@ -15,7 +15,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SubjectsAdapter.SubjectsAdapterCallbacks {
 
     private RecyclerView    mSubjectsList;
     private SubjectsAdapter mAdapter;
@@ -160,4 +160,11 @@ public class MainActivity extends AppCompatActivity {
         view.animate();
     }
 
+    @Override
+    public void moveToPos(int pos) {
+        if (pos==-1){
+            return;
+        }
+        mSubjectsList.scrollToPosition(pos);
+    }
 }
