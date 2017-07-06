@@ -40,4 +40,5 @@
     </string>
     <string name="grade_note">These grades are according to my university grading scheme.
         Your grade scheme may vary.</string>
+    <string name="cgpa_message">CGPA</string>
 </resources>
