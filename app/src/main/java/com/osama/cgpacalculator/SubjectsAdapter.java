@@ -2,7 +2,9 @@ package com.osama.cgpacalculator;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -142,6 +144,11 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
                     float     number    = getGradeNumber(i);
                     mCallbacks.moveToPos(getAdapterPosition());
                     number  = number*crNumbers;
+                    if (i>0){
+                        itemView.setBackgroundColor(getGradeColor(i));
+                    }else{
+                        itemView.setBackgroundColor(Color.WHITE);
+                    }
 
                     if(number>0 || (crNumbers>0 && i>0)){
                         calculator.setTotalCrs(getAdapterPosition(),crNumbers);
@@ -215,17 +222,17 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.ViewHo
             default:        return 0.00f;
         }
     }
-    private int getGradeColor(float gradeNumber){
+    private int getGradeColor(int gradeNumber){
         switch (gradeNumber){
-            case A_PLUS:    return 4.00f;
-            case A:         return 3.70f;
-            case B_PLUS:    return 3.40f;
-            case B:         return 3.00f;
-            case B_MINUS:   return 2.50f;
-            case C_PLUS:    return 2.00f;
-            case C:         return 1.50f;
-            case D:         return 1.00f;
-            default:        return 0.00f;
+            case A_PLUS:    return ContextCompat.getColor(mContext,R.color.colorGradeAPlus);
+            case A:         return ContextCompat.getColor(mContext,R.color.colorGradeA);
+            case B_PLUS:    return ContextCompat.getColor(mContext,R.color.colorGradeBPlus);
+            case B:         return ContextCompat.getColor(mContext,R.color.colorGradeB);
+            case B_MINUS:   return ContextCompat.getColor(mContext,R.color.colorGradeBMinus);
+            case C_PLUS:    return ContextCompat.getColor(mContext,R.color.colorGradeCPlus);
+            case C:         return ContextCompat.getColor(mContext,R.color.colorGradeC);
+            case D:         return ContextCompat.getColor(mContext,R.color.colorGradeD);
+            default:        return ContextCompat.getColor(mContext,R.color.colorGradeF);
         }
     }
     public interface SubjectsAdapterCallbacks{
