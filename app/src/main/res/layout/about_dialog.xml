@@ -9,7 +9,7 @@ android:layout_margin="@dimen/activity_horizontal_margin"
    <android.support.v7.widget.AppCompatImageView
        android:layout_width="60dp"
        android:layout_height="60dp"
-       app:srcCompat="@drawable/calculator"
+       app:srcCompat="@drawable/app_icon"
        android:layout_gravity="center_horizontal"
        />
     <android.support.v7.widget.AppCompatTextView
