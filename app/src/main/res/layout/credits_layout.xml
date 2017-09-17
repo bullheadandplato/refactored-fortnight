@@ -15,7 +15,7 @@
 <android.support.v7.widget.AppCompatTextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="slownet5"
+    android:text="Osama Bin Omar (bullhead)"
     android:layout_gravity="center"
     />
 
