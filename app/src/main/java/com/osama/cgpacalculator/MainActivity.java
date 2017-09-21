@@ -3,10 +3,12 @@ package com.osama.cgpacalculator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
     private RecyclerView    mSubjectsList;
     private SubjectsAdapter mAdapter;
     private int             numberOfSubjects    = 5;
-
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,12 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
         setupRecyclerView();
         animateWhat();
 
-        //Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setCollapsingBar();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+
 
         findViewById(R.id.calculate_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +47,12 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
                 calculateButtonClick(view);
             }
         });
+    }
+
+    private void setCollapsingBar() {
+        collapsingToolbarLayout = findViewById(R.id.collapsing_bar);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.parseColor("#4caf50"));
+        collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
     }
 
     @Override
@@ -179,6 +191,8 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
         textView.setText("GPA: "+goo);
         gpaAnimation(textView);
         textView.setTextColor(getCgpaColor(goo));
+        collapsingToolbarLayout.setTitle("GPA: " + goo);
+        collapsingToolbarLayout.setCollapsedTitleTextColor(getCgpaColor(goo));
 
     }
     //trying to animate something
