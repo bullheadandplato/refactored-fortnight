@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
         <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_height="250dp"
-            android:layout_width="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:background="@color/colorPrimary"
             android:id="@+id/collapsing_bar"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
         >
             <TextView
+                android:id="@+id/show_cgpa_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textSize="40sp"
                 android:layout_gravity="center"
                 android:text="@string/cgpa_message"
-                android:id="@+id/show_cgpa_textview"
+                android:textColor="@color/colorAccent"
+                android:textSize="40sp"
                 />
 
             <android.support.v7.widget.Toolbar
@@ -30,8 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 app:layout_collapseMode="pin"
-                app:theme="@style/ToolbarColoredBackArrow"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ToolbarColoredBackArrow" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -44,13 +44,13 @@
         tools:context="com.osama.cgpacalculator.MainActivity"
         >
         <android.support.v7.widget.RecyclerView
-              android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+            android:id="@+id/subjects_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/subjects_list"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
             >
         </android.support.v7.widget.RecyclerView>
         <android.support.v7.widget.AppCompatTextView
@@ -63,15 +63,15 @@
 
     </RelativeLayout>
      <android.support.design.widget.FloatingActionButton
+         android:id="@+id/calculate_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cal_button_text"
             android:layout_centerHorizontal="true"
-            android:id="@+id/calculate_button"
+         android:text="@string/cal_button_text"
+         android:tint="#FFF"
          app:layout_anchor="@id/collapsing_bar"
          app:layout_anchorGravity="bottom|right|end"
          app:srcCompat="@drawable/ic_check"
-         android:tint="#FFF"
             />
 </android.support.design.widget.CoordinatorLayout>
 
