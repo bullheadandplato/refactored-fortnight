@@ -181,6 +181,21 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
 
     @SuppressLint("SetTextI18n")
     public void calculateButtonClick(View view){
+        if (mAdapter.getPreviousCgpa() > 4) {
+            Snackbar.make(view, "Invalid previous cgpa.", Snackbar.LENGTH_LONG)
+                    .setAction("Override", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            calculate(view);
+                        }
+                    }).show();
+        } else {
+            calculate(view);
+        }
+
+    }
+
+    private void calculate(View view) {
         float goo =
                 BackendCalculator.getInstance().calculateCgpa(
                         mAdapter.getPreviousCrHrs(),
@@ -193,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements SubjectsAdapter.S
         textView.setTextColor(getCgpaColor(goo));
         collapsingToolbarLayout.setTitle("GPA: " + goo);
         collapsingToolbarLayout.setCollapsedTitleTextColor(getCgpaColor(goo));
-
     }
     //trying to animate something
     private void animateWhat(){
